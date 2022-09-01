@@ -1,0 +1,17 @@
+package utility;
+
+import java.io.FileInputStream;
+
+import java.util.Properties;
+
+public class readPropfile {
+	public static String readPropertyfile(String value) throws Throwable
+	{
+		Properties prop=new Properties();
+		FileInputStream file=new FileInputStream("C:\\Users\\Jadhav\\eclipse-workspace\\Frame2\\testData\\config.properties");
+		prop.load(file);
+		return prop.getProperty(value);
+		
+	}
+
+}

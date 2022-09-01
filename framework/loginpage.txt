@@ -1,0 +1,56 @@
+package pages;
+
+import org.openqa.selenium.WebElement;
+
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import base.testBase;
+import utility.readExcel;
+
+public class loginpage extends testBase{
+	@FindBy(xpath="//img[@alt='Kite']")private WebElement kitelogo;
+	@FindBy(xpath="//div[@class='form-header text-center']")private WebElement loginlabel;
+	@FindBy(xpath="//p[@class='text-light text-xxsmall exchanges-info dim']")private WebElement address;
+	@FindBy(xpath="//input[@id='userid']")private WebElement useridTB;
+	@FindBy(xpath="//input[@id='password']")private WebElement passwordTB;
+	@FindBy(xpath="//button[@type='submit']")private WebElement loginbutton;
+	@FindBy(xpath="//img[@alt='Zerodha']")private WebElement zerodhalogo;
+	@FindBy(xpath="//input[@id='pin']")private WebElement pintext;
+	@FindBy(xpath="//button[@type='submit']")private WebElement continueBT;
+	@FindBy(xpath="//img[@alt='Kite iOS']")private WebElement IOSlogo;
+	
+	public loginpage() {
+		PageFactory.initElements(driver,this);
+	}
+	public String title() {
+		 return driver.getTitle();
+	}
+	public boolean kitelogo() {
+		return kitelogo.isDisplayed();
+	}
+	public String loginlabel() {
+		return loginlabel.getText();
+	}
+	public boolean zerodhalogo() {
+		return zerodhalogo.isEnabled();
+	}
+	public String address(){
+		 return address.getText();
+	}
+	public boolean IOSlogo() {
+		 return IOSlogo.isEnabled();
+	}
+	public void zerodhalogin() throws Throwable {
+		
+		useridTB.sendKeys(readExcel.readexcel1(0,1));
+		
+		passwordTB.sendKeys(readExcel.readexcel1(0,2));
+		loginbutton.click();
+		Thread.sleep(3000);
+		
+		pintext.sendKeys(readExcel.readexcel1(0,3));
+		continueBT.click();
+	}
+
+}

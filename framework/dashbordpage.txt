@@ -1,0 +1,59 @@
+package pages;
+
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import base.testBase;
+
+public class DashbordPage extends testBase {
+	@FindBy(xpath="//div[@class='instrument-widget'][1]")private WebElement nifty;
+	@FindBy(xpath="//div[@class='instrument-widget'][2]")private WebElement sensex;
+	@FindBy(xpath="//span[@class='nickname']")private WebElement nickname;
+	@FindBy(xpath="//span[@class='user-id']")private WebElement userid;
+	@FindBy(xpath="//h4[@class='username']")private WebElement username;
+	@FindBy(xpath="//div[@class='email']")private WebElement Email;
+	@FindBy(xpath="//a[@target='_self']")private WebElement logout;
+	public DashbordPage() {
+		PageFactory.initElements(driver,this);
+	}
+	public String nifty() throws Exception {
+		Thread.sleep(1000);
+		 return nifty.getText();
+	}
+	public String sensex() throws Throwable {
+		Thread.sleep(1000);
+		return sensex.getText();
+	}
+	public String nickname() throws Throwable {
+		Thread.sleep(1000);
+		return nickname.getText();
+	}
+	public String userid() throws Throwable {
+		Thread.sleep(1000);
+
+		return userid.getText();
+	}
+	public void userid1() throws Throwable {
+		Thread.sleep(1000);
+		userid.click();
+	}
+	public String username() throws Throwable {
+		userid1();
+		Thread.sleep(1000);
+		return username.getText();		
+	}
+	public String email() throws Throwable {
+		userid1();
+		Thread.sleep(1000);
+		return Email.getText();
+	}
+	public String logout() throws Throwable {
+		userid1();
+		Thread.sleep(1000);
+		return logout.getText();
+	}
+}
+
+
+

@@ -1,0 +1,64 @@
+package test;
+
+
+
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import base.testBase;
+import pages.DashbordPage;
+import pages.Orderspage;
+import pages.loginpage;
+import utility.screenshot;
+
+public class orderpagetest extends testBase {
+	loginpage log;
+	DashbordPage dash;
+	Orderspage order;
+	@BeforeTest
+	public void starts() throws Throwable {
+		intialization();
+		log=new loginpage();
+		dash=new DashbordPage();
+		order=new Orderspage();
+		log.zerodhalogin();	
+	}
+	@Test(enabled=true)
+	public void order() throws Exception {
+		
+		order.orderclick();
+		
+	}
+	@Test
+	public void gtt() throws Exception {
+		
+		order.placegttorder();
+	}
+	@AfterMethod
+	public void end(ITestResult it) throws Exception {
+		if(ITestResult.FAILURE==it.getStatus())
+		{
+			screenshot.CaptureScreenShotFC(driver,it.getName());
+		}
+		
+		driver.close();
+	}
+	
+		
+	}
+
+
+		
+	
+	
+		
+		
+	
+	
+
+		
+	
+
+

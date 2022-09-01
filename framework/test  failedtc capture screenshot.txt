@@ -1,0 +1,39 @@
+package test;
+
+
+
+import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import base.testBase;
+import pages.loginpage;
+import utility.readPropfile;
+import utility.screenshot;
+
+public class captureScreenShotfailTC extends testBase {
+	loginpage log;
+	@BeforeMethod
+	public void start() throws Throwable {
+		intialization();
+		log=new loginpage();
+	}
+	@Test(invocationCount=2,priority=1)
+	public void verifytitle() throws Throwable {
+		String actTitle=(readPropfile.readPropertyfile("title"));
+		String ExpTitle = log.title();
+		Assert.assertEquals(actTitle, ExpTitle,"title is wrong");
+	}
+	@AfterMethod
+	public void end(ITestResult it) throws Exception {
+		if(ITestResult.FAILURE==it.getStatus())
+		{
+			screenshot.CaptureScreenShotFC(driver,it.getName());
+		}
+		driver.close();
+		
+	
+	}
+}

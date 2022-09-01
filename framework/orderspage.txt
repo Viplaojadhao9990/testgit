@@ -1,0 +1,64 @@
+package pages;
+
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import base.testBase;
+
+
+public class Orderspage extends testBase {
+@FindBy(xpath="//span[text()='Orders']")private WebElement orderbtn;
+@FindBy(xpath="//button[@class='button-blue']")private WebElement getstarted;
+@FindBy(xpath="//input[@placeholder='Search eg: infy bse, nifty fut, nifty weekly, gold mcx'][2]")private WebElement searchscrip;
+@FindBy(xpath="//span[@class='icon icon-ellipsis']")private WebElement more;
+@FindBy(xpath="//button[@type='button' and @class='button-outline button-blue']")private WebElement GTTbtn;
+@FindBy(xpath="//input[@label='Trigger price']")private WebElement triggerprice;
+@FindBy(xpath="//input[@label='Qty.']")private WebElement qty;
+@FindBy(xpath="//input[@label='Price']")private WebElement price;
+@FindBy(xpath="//button[@class='place button-blue']")private WebElement place;
+
+public Orderspage() {
+	PageFactory.initElements(driver, this);
+}
+public void orderclick() throws Exception {
+	Thread.sleep(3000);
+	String text =orderbtn.getText();
+	System.out.println(text);
+}
+public void placegttorder() throws Exception {
+	
+	orderbtn.click();
+	
+	getstarted.click();
+	Thread.sleep(3000);
+	 driver.switchTo().window("Search");
+	
+	searchscrip.sendKeys("infy");
+	Thread.sleep(2000);
+	Actions a=new Actions(driver);
+	for(int i=0;i<2;i++)
+	{
+		a.sendKeys(Keys.DOWN).build().perform();
+		Thread.sleep(3000);
+	}
+	a.sendKeys(Keys.ENTER).build().perform();
+	Thread.sleep(3000);
+	more.click();
+	
+	GTTbtn.click();
+	Thread.sleep(3000);
+	
+	
+	qty.sendKeys("100");
+	Thread.sleep(3000);
+	price.sendKeys("1500");
+	Thread.sleep(3000);
+	place.click();
+	Thread.sleep(1000);
+	
+	
+}
+}

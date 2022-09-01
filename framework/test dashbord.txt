@@ -1,0 +1,80 @@
+package test;
+
+
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+import org.testng.annotations.Test;
+
+
+
+import base.testBase;
+import pages.DashbordPage;
+import pages.loginpage;
+
+public class dashboardTest extends  testBase {
+	loginpage login;
+	DashbordPage dash;
+	@BeforeMethod
+	public void start() throws Throwable {
+		intialization();
+		 login = new loginpage();
+		  dash = new DashbordPage ();
+		login.zerodhalogin();
+		}
+		@Test
+		public void nifty() throws Exception  {
+			String fifty=dash.nifty();
+			System.out.println(fifty);
+		}
+		@Test
+		public void sensextest() throws Throwable {
+			String thirty = dash.sensex();
+			System.out.println(thirty);
+			
+		}
+		@Test
+		public void nicknametest11() throws Throwable {
+			String name = dash.nickname();
+			System.out.println(name);
+			}
+		@Test
+		public void useridtext() throws Throwable {
+			String T1 = dash.userid();
+			System.out.println(T1);
+		}
+		@Test
+		public void userid1test() throws Throwable {
+			dash.userid1();
+		}
+		@Test
+		public void nametest() throws Throwable {
+			String fn = dash.username();
+			System.out.println(fn);
+		}
+		@Test
+		public void emailtest() throws Throwable {
+			String emailid = dash.email();
+			System.out.println(emailid);
+		}
+		@Test
+		public void logouttest() throws Throwable  {
+			String out = dash.logout();
+			System.out.println(out);
+		}
+		@AfterMethod
+		public void end() {
+			driver.close();
+			
+		}
+		
+		
+		
+
+
+	
+		
+	
+
+	
+}

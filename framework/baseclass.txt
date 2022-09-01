@@ -1,0 +1,40 @@
+package base;
+
+import java.time.Duration;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import utility.readExcel;
+import utility.readPropfile;
+
+public class testBase {
+	public static WebDriver driver;
+	public void intialization() throws Throwable {
+		
+		
+		if(readPropfile.readPropertyfile("browser").equals("firefox"))
+		{
+			WebDriverManager.firefoxdriver().setup();
+			driver=new FirefoxDriver();
+		}
+		if(readPropfile.readPropertyfile("browser").equals("chrome"))
+		{
+			WebDriverManager.chromedriver().setup();
+			driver=new ChromeDriver();
+		}
+		/*if(readPropfile.readPropertyfile("browser").equals("Edge"));
+		{
+			WebDriverManager.edgedriver().setup();
+			driver=new EdgeDriver();
+		}*/
+		driver.manage().window().maximize();
+		driver.get(readExcel.readexcel1(0,0));
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+	}
+	
+	
+	
+	
+
+}

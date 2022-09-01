@@ -1,0 +1,17 @@
+package utility;
+
+import java.io.File;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.io.FileHandler;
+
+public class screenshot {
+	public static void CaptureScreenShotFC(WebDriver driver,String methodname) throws Exception {
+		File source = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		File des=new File("C:\\Users\\Jadhav\\eclipse-workspace\\Frame2\\screenshot\\"+ methodname +".png");
+		FileHandler.copy(source, des);
+	}
+
+}

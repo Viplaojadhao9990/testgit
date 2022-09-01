@@ -1,0 +1,86 @@
+package test;
+
+
+
+import static org.testng.Assert.assertEquals;
+
+
+import org.testng.Assert;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+
+
+import base.testBase;
+import pages.loginpage;
+import utility.readPropfile;
+import utility.screenshot;
+
+public class logintest extends testBase{
+	loginpage log;
+	@BeforeMethod
+	public void start() throws Throwable {
+		intialization();
+		log=new loginpage();
+	}
+	
+	@Test(invocationCount=2,priority=1)
+	public void verifytitle() throws Throwable {
+		
+		String actTitle=(readPropfile.readPropertyfile("title"));
+		String ExpTitle = log.title();
+		Assert.assertEquals(actTitle, ExpTitle,"title is wrong");
+		
+	}
+	@Test (enabled=true,priority=2)
+	public void kitelogotest() {
+		boolean logo = log.kitelogo();
+		Assert.assertTrue(logo, "its correct");
+	}
+	@Test (enabled=true,timeOut=100,priority=3)
+	public void loginlabeltest() {
+		String label = log.loginlabel();
+		Assert.assertTrue(true,label);
+	}
+	@Test (enabled=true)
+	public void zerodhalogotest() {
+		
+		boolean logo2 = log.zerodhalogo();
+		Assert.assertEquals(logo2, true, "right");
+	}
+	@Test (enabled=true,timeOut=100)
+	public void addresstest() {
+		
+		String add = log.address();
+		Assert.assertTrue(true, add);
+	}
+	@Test (enabled=true,dependsOnMethods="zerodhalogotest")
+	public void IOSLOGOtest() {
+	
+		boolean ios = log.IOSlogo();
+		Assert.assertTrue(ios, "iso Logo is available");
+	}
+	@Test (enabled=true,priority=4,dependsOnMethods="IOSLOGOtest")
+	public void zerodhaloginTest() throws Throwable {
+		
+	 log.zerodhalogin();
+	 assertEquals(true, true);
+	}
+	@AfterMethod
+	public void end(ITestResult z) throws Exception {
+		if(ITestResult.FAILURE==z.getStatus()) {
+			screenshot.CaptureScreenShotFC(driver,z.getName());
+		}
+		
+		driver.close();
+	}
+}
+		
+		
+	
+	
+
+

@@ -1,0 +1,43 @@
+package test;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.Test;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class Parellel_testing {
+	WebDriver driver=new ChromeDriver();
+	@Test
+	public void FB() {
+		System.setProperty("WebDriver.chrome.driver","C:\\Users\\Jadhav\\eclipse-workspace\\Frame1\\ChromeSetup.exe");
+		WebDriverManager.chromedriver().setup();
+		driver.get("https://kite.zerodha.com/");
+		driver.manage().window().maximize();
+		driver.close();
+	}
+	@Test
+	public void google() {
+		System.setProperty("Webdriver.chrome.driver", "C:\\Users\\Jadhav\\eclipse-workspace\\Frame1\\ChromeSetup.exe");
+		WebDriverManager.chromedriver().setup();
+		driver.get("https://www.facebook.com/");
+		driver.manage().window().maximize();
+		driver.close();
+	}
+	@Test
+	public void kite() {
+		System.setProperty("webdriver.chrome.driver","C:\\Users\\Jadhav\\eclipse-workspace\\Frame1\\ChromeSetup.exe");
+		WebDriverManager.chromedriver().setup();
+		driver.get("https://kite.zerodha.com/");
+		driver.manage().window().maximize();
+		driver.close();
+	}
+	@Test
+	public void rediff() {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\Jadhav\\eclipse-workspace\\Frame1\\ChromeSetup.exe");
+		WebDriverManager.chromedriver().setup();
+		driver.get("https://www.rediff.com/");
+		driver.manage().window().maximize();
+		driver.close();
+	}
+}

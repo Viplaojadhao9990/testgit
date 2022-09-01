@@ -1,0 +1,16 @@
+package utility;
+
+import java.io.FileInputStream;
+
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+
+public class readExcel {
+	public static String readexcel1(int row,int col) throws Throwable, Exception {
+	FileInputStream file=new FileInputStream("C:\\Users\\Jadhav\\eclipse-workspace\\Frame2\\Test Data.xlsx");
+	Sheet excel = WorkbookFactory.create(file).getSheet("Sheet1");
+	String value = excel.getRow(row).getCell(col).getStringCellValue();
+	return value;
+}
+}
+	
